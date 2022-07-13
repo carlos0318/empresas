@@ -29,8 +29,22 @@ const getEmpresaPorNombre = async (req, res) => {
   });
 }
 
+const updateEmpresa = async (req, res) => {
+  const { nombre, fechaConstitucion, comentarios, id_tipoEmpresa, id } = req.body;
+
+  let sql = comentarios 
+    ? `UPDATE empresa SET nombre = '${nombre}', fechaConstitucion = '${fechaConstitucion}', comentarios = '${comentarios}', id_tipoEmpresa = ${id_tipoEmpresa} WHERE id = ${id}`
+    :`UPDATE empresa SET nombre = '${nombre}', fechaConstitucion = '${fechaConstitucion}', comentarios = ${comentarios}, id_tipoEmpresa = ${id_tipoEmpresa} WHERE id = ${id}`;
+
+  connection.query(sql, (error, result) => {
+    if(error) throw error;
+    res.send('Se actualizo la empresa');
+  })
+}
+
 module.exports = {
   getTiposEmpresa,
   createEmpresa,
-  getEmpresaPorNombre
+  getEmpresaPorNombre,
+  updateEmpresa
 }
