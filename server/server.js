@@ -1,6 +1,7 @@
 const express = require("express");
 require('dotenv').config();
 const app = express();
+require('./models/connection');
 
 app.get("/", (req, res) => {
   res.send("Server funcionando");
