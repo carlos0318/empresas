@@ -20,7 +20,17 @@ const createEmpresa = async (req, res) => {
   })
 }
 
+const getEmpresaPorNombre = async (req, res) => {
+  const { nombre } = req.params;
+
+  await connection.query(`SELECT * FROM empresa WHERE nombre regexp '^${nombre}'`, (error, result, fields) => {
+    if(error) throw error;
+    res.send(result);
+  });
+}
+
 module.exports = {
   getTiposEmpresa,
-  createEmpresa
+  createEmpresa,
+  getEmpresaPorNombre
 }
