@@ -42,9 +42,19 @@ const updateEmpresa = async (req, res) => {
   })
 }
 
+const deleteEmpresa = async (req, res) => {
+  const { id } = req.params;
+
+  await connection.query(`DELETE FROM empresa WHERE id = ${id}`, (error, result) => {
+    if(error) throw error;
+    res.send('Se elimino la empresa');
+  })
+}
+
 module.exports = {
   getTiposEmpresa,
   createEmpresa,
   getEmpresaPorNombre,
-  updateEmpresa
+  updateEmpresa,
+  deleteEmpresa
 }
