@@ -7,6 +7,20 @@ const getTiposEmpresa = async (req, res) => {
   })
 }
 
+const createEmpresa = async (req, res) => {
+  const { nombre, fechaConstitucion, comentarios, id_tipoEmpresa } = req.body;
+
+  let sql = comentarios 
+    ? `INSERT INTO empresa(nombre, fechaConstitucion, comentarios, id_tipoEmpresa) VALUES ('${nombre}', '${fechaConstitucion}', '${comentarios}', '${id_tipoEmpresa}')`
+    : `INSERT INTO empresa(nombre, fechaConstitucion, id_tipoEmpresa) VALUES ('${nombre}', '${fechaConstitucion}', '${id_tipoEmpresa}')`;
+
+  await connection.query(sql, (error, result) => {
+    if(error) throw error;
+    res.send('Se creo empresa');
+  })
+}
+
 module.exports = {
-  getTiposEmpresa
+  getTiposEmpresa,
+  createEmpresa
 }
