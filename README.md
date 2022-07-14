@@ -3,5 +3,5 @@
 ## ¿Cómo ejecutar?
 - Clonar el repo
 - Entrar a la carpeta raiz 
-- ```cd server && npm install && npm run dev```
-- ```cd client && npm install && npm run dev```
+- En una terminal ```cd server && npm install && npm run dev``` para correr el servidor.
+- En otra terminal ```cd client && npm install && npm run dev``` para correr el client.
