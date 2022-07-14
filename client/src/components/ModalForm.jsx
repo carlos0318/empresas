@@ -1,32 +1,15 @@
-import { useState } from "react";
-import { Button, Modal } from "semantic-ui-react";
+import {  Modal } from "semantic-ui-react";
+import Form from "./Form";
 
-const ModalForm = () => {
-  const [open, setOpen] = useState(false);
-
+const ModalForm = ({ handleGetCompanies, open, setOpen, title, id }) => {
   return (
     <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button primary>Nueva empresa</Button>}
     >
-      <Modal.Header>Añadir una nueva empresa</Modal.Header>
+      <Modal.Header>{title}</Modal.Header>
       <Modal.Content>
-        
+        <Form setOpen={setOpen} handleGetCompanies={handleGetCompanies} id={id} />
       </Modal.Content>
-      <Modal.Actions>
-        <Button color="black" onClick={() => setOpen(false)}>
-          Cancelar
-        </Button>
-        <Button
-          content="Guardar"
-          labelPosition="right"
-          icon="checkmark"
-          onClick={() => setOpen(false)}
-          positive
-        />
-      </Modal.Actions>
     </Modal>
   );
 };
